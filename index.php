@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Label Laci Siswa</title>
+    <title>Labels Siswa</title>
 
     <link rel="icon" type="image/x-icon" href="assets/logo-sma.png">
 
@@ -119,10 +119,10 @@
 
             <img src="assets/logo-sma.png" width="90" class="mb-3" data-aos="zoom-in">
 
-            <h1 data-aos="fade-up">📁 Sistem Label Laci Siswa</h1>
+            <h1 data-aos="fade-up">Sistem Labels Siswa</h1>
 
             <p class="mt-2" data-aos="fade-up" data-aos-delay="100">
-                Kelola label laci siswa dengan cepat, rapi, dan profesional
+                Kelola label siswa dengan cepat, rapi, dan profesional
             </p>
 
             <a href="auth/login.php" class="btn btn-main mt-4" data-aos="fade-up" data-aos-delay="200">
@@ -144,7 +144,7 @@
                     <div class="feature-box">
                         <div class="feature-icon">📋</div>
                         <h6 class="fw-bold">Manajemen Data</h6>
-                        <small class="text-muted">CRUD siswa cepat & mudah</small>
+                        <small class="text-muted">Atur data siswa cepat & mudah</small>
                     </div>
                 </div>
 

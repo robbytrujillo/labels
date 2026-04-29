@@ -158,4 +158,4 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
-$dompdf->stream("label-laci.pdf", ["Attachment" => false]);
+$dompdf->stream("label-siswa.pdf", ["Attachment" => false]);

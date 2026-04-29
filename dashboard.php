@@ -25,202 +25,268 @@ $data = $conn->query("SELECT * FROM siswa ORDER BY kelas, absen ASC");
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
 
-    <style>
-    html,
-    body {
-        height: 100%;
-    }
+    <!-- ==================== PERBAIKAN CSS ==================== -->
+<style>
+html,
+body {
+    height: 100%;
+}
 
-    body {
-        display: flex;
-        flex-direction: column;
-        background: linear-gradient(135deg, #eef2ff, #f8fafc);
-        font-family: 'Poppins', sans-serif;
-    }
+body {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
 
-    .main-content {
-        flex: 1;
-    }
+.main-content {
+    flex: 1;
+}
 
-    footer {
-        margin-top: auto;
-        padding: 10px;
-        background: #FFFFFF;
-        color: black;
-        text-align: center;
-        font-weight: bold;
-    }
+/* CONTAINER RESPONSIVE */
+.container {
+    width: 100%;
+    max-width: 1320px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
-    .card {
-        border-radius: 15px;
-        border: none;
-    }
+/* CARD */
+.card {
+    border-radius: 15px;
+    border: none;
+}
 
-    .table {
-        border-radius: 10px;
-        overflow: hidden;
-    }
+/* FOOTER */
+footer {
+    margin-top: auto;
+    padding: 10px;
+    background: #FFFFFF;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
 
-    .btn {
-        border-radius: 30px;
-        transition: all 0.2s ease;
+/* BUTTON */
+.btn {
+    border-radius: 30px;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+}
+
+.btn-primary {
+    background: #4f46e5;
+}
+
+.btn-success {
+    background: #16a34a;
+}
+
+.btn-dark {
+    background: #1e293b;
+}
+
+/* TABLE */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+}
+
+#tabel {
+    width: 100% !important;
+}
+
+table.dataTable {
+    width: 100% !important;
+}
+
+table th {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+table td {
+    vertical-align: middle !important;
+}
+
+.table tbody tr:hover {
+    background: #eef2ff;
+    transition: 0.2s;
+}
+
+td:nth-child(2) {
+    font-weight: 500;
+    color: #4f46e5;
+}
+
+/* AKSI BUTTON */
+.aksi-btn {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* DATATABLE PAGINATION */
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+    margin: 2px;
+    border: none !important;
+    background: #e2e8f0 !important;
+    color: #1e293b !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #4f46e5 !important;
+    color: #fff !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #6366f1 !important;
+    color: white !important;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     h4 {
-        font-weight: bold;
+        font-size: 20px;
     }
 
-    /* warna tombol */
-    .btn-primary {
-        background: #4f46e5;
+    table.dataTable th,
+    table.dataTable td {
+        font-size: 12px;
+        white-space: nowrap;
     }
 
-    .btn-success {
-        background: #16a34a;
-    }
-
-    .btn-dark {
-        background: #1e293b;
-    }
-
-    .btn:hover {
-        transform: scale(1.03);
-    }
-
-    /* AKSI BUTTON */
-    .aksi-btn {
-        display: flex;
-        gap: 6px;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    /* MOBILE */
-    @media (max-width: 576px) {
-        .aksi-btn {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .aksi-btn .btn {
-            width: 100%;
-            font-size: 12px;
-            padding: 6px;
-        }
-    }
-
-    table td,
-    table th {
-        vertical-align: middle !important;
-        text-align: center;
-    }
-
-    /* PAGINATION WRAPPER */
-    .dataTables_wrapper .dataTables_paginate {
-        margin-top: 15px;
-        text-align: center;
-    }
-
-    /* BUTTON */
-    .dataTables_wrapper .dataTables_paginate .paginate_button {
-        border-radius: 8px !important;
-        padding: 6px 12px !important;
-        margin: 2px;
-        border: none !important;
-        background: #e2e8f0 !important;
-        color: #1e293b !important;
-    }
-
-    /* ACTIVE */
-    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-        background: #4f46e5 !important;
-        color: #fff !important;
-    }
-
-    /* HOVER */
-    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-        background: #6366f1 !important;
-        color: white !important;
-    }
-
-    /* DISABLED */
-    .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-    /* WRAPPER ATAS DATATABLE */
     .dataTables_wrapper .row {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
         margin-bottom: 10px;
     }
 
-    /* MOBILE FIX */
-    @media (max-width: 576px) {
-
-        /* show entries & search jadi ke bawah */
-        .dataTables_wrapper .dataTables_length,
-        .dataTables_wrapper .dataTables_filter {
-            width: 100%;
-            text-align: left !important;
-            margin-bottom: 10px;
-        }
-
-        /* input search full width */
-        .dataTables_wrapper .dataTables_filter input {
-            width: 100% !important;
-            margin-left: 0 !important;
-        }
-
-        /* pagination & info */
-        .dataTables_wrapper .dataTables_info,
-        .dataTables_wrapper .dataTables_paginate {
-            width: 100%;
-            text-align: center !important;
-            margin-top: 10px;
-        }
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+        width: 100%;
+        text-align: left !important;
+        margin-bottom: 8px;
     }
 
-    /* MOBILE FIX FINAL */
-    @media (max-width: 576px) {
-
-        /* bungkus info + pagination */
-        .dataTables_wrapper .row:last-child {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* INFO */
-        .dataTables_wrapper .dataTables_info {
-            width: 100%;
-            text-align: center !important;
-            margin-bottom: 8px;
-        }
-
-        /* PAGINATION */
-        .dataTables_wrapper .dataTables_paginate {
-            width: 100%;
-            text-align: center !important;
-        }
+    .dataTables_wrapper .dataTables_filter input {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-top: 5px;
     }
 
-    .table tbody tr:hover {
-        background: #eef2ff;
-        transition: 0.2s;
+    .dataTables_wrapper .dataTables_paginate {
+        text-align: center !important;
     }
 
-    td:nth-child(2) {
-        font-weight: 500;
-        color: #4f46e5;
+    .aksi-btn {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    @media (max-width: 576px) {
-        .aksi-btn .btn span {
-            display: none;
-        }
+    .aksi-btn .btn {
+        width: 100%;
+        font-size: 11px;
+        padding: 5px;
     }
-    </style>
+
+    .aksi-btn .btn span {
+        display: none;
+    }
+}
+
+
+/* ================= TOOLBAR MENU ================= */
+.toolbar-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.toolbar-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* BUTTON STYLE */
+.toolbar-menu .btn {
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: 0.2s ease;
+}
+
+.toolbar-menu .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .toolbar-menu {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .toolbar-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+
+    .toolbar-group .btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+/* EXTRA SMALL */
+@media (max-width: 480px) {
+
+    .toolbar-group .btn {
+        font-size: 12px;
+        padding: 9px;
+    }
+}
+</style>
 
 </head>
 
@@ -231,8 +297,8 @@ $data = $conn->query("SELECT * FROM siswa ORDER BY kelas, absen ASC");
         <div class="card shadow-sm p-3 mb-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
 
             <div>
-                <h4 class="mb-0">📁 Data Siswa</h4>
-                <small class="text-muted">Manajemen Label Laci Siswa</small>
+                <h4 class="mb-0">Data Siswa</h4>
+                <small class="text-muted">Manajemen Label Siswa</small>
             </div>
 
             <div class="ms-auto mt-2 mt-md-0">
@@ -244,31 +310,58 @@ $data = $conn->query("SELECT * FROM siswa ORDER BY kelas, absen ASC");
         </div>
 
         <!-- BUTTON -->
-        <div class="d-flex flex-wrap gap-2 mb-3 justify-content-between">
+        <!--<div class="d-flex flex-wrap gap-2 mb-3 justify-content-between">-->
 
             <!-- kiri -->
-            <div class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
-                    <i class="bi bi-plus"></i> Tambah
-                </button>
+        <!--    <div class="d-flex gap-2 flex-wrap">-->
+        <!--        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">-->
+        <!--            <i class="bi bi-plus"></i> Tambah-->
+        <!--        </button>-->
 
-                <a href="modules/siswa/pdf.php" target="_blank" class="btn btn-dark btn-sm">
-                    <i class="bi bi-file-earmark-pdf"></i> Export
-                </a>
-            </div>
+        <!--        <a href="modules/siswa/pdf.php" target="_blank" class="btn btn-dark btn-sm">-->
+        <!--            <i class="bi bi-file-earmark-pdf"></i> Export-->
+        <!--        </a>-->
+        <!--    </div>-->
 
             <!-- kanan -->
-            <div class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalImport">
-                    <i class="bi bi-upload"></i> Import
-                </button>
+        <!--    <div class="d-flex gap-2 flex-wrap">-->
+        <!--        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalImport">-->
+        <!--            <i class="bi bi-upload"></i> Import-->
+        <!--        </button>-->
 
-                <a href="modules/siswa/template.php" class="btn btn-info btn-sm">
-                    <i class="bi bi-download"></i> Template
-                </a>
-            </div>
+        <!--        <a href="modules/siswa/template.php" class="btn btn-info btn-sm">-->
+        <!--            <i class="bi bi-download"></i> Template-->
+        <!--        </a>-->
+        <!--    </div>-->
 
-        </div>
+        <!--</div>-->
+        
+        <!-- BUTTON TOOLBAR RESPONSIVE -->
+<div class="toolbar-menu mb-3">
+
+    <!-- kiri -->
+    <div class="toolbar-group">
+        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambah">
+            <i class="bi bi-plus"></i> Tambah
+        </button>
+
+        <a href="modules/siswa/pdf.php" target="_blank" class="btn btn-dark btn-sm">
+            <i class="bi bi-file-earmark-pdf"></i> Export
+        </a>
+    </div>
+
+    <!-- kanan -->
+    <div class="toolbar-group">
+        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalImport">
+            <i class="bi bi-upload"></i> Import
+        </button>
+
+        <a href="modules/siswa/template.php" class="btn btn-info btn-sm">
+            <i class="bi bi-download"></i> Template
+        </a>
+    </div>
+
+</div>
 
         <!-- ALERT -->
         <?php if(isset($_GET['success'])): ?>
@@ -281,10 +374,10 @@ $data = $conn->query("SELECT * FROM siswa ORDER BY kelas, absen ASC");
 
         <!-- TABLE -->
         <div class="table-responsive">
-            <table class="table table-striped" id="tabel">
+            <table class="table table-striped table-bordered" id="tabel">
 
                 <thead class="table-dark">
-                    <tr>
+                    <tr style="text-align: center;">
                         <th>No</th>
                         <th>NISN</th>
                         <th>Nama</th>
@@ -418,36 +511,40 @@ $data = $conn->query("SELECT * FROM siswa ORDER BY kelas, absen ASC");
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
 
     <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        $('#tabel').DataTable({
-            responsive: true,
-            autoWidth: false,
-            pagingType: "simple_numbers",
-            language: {
-                search: "🔍 Cari:",
-                lengthMenu: "Tampilkan _MENU_ data",
-                info: "Menampilkan _START_ - _END_ dari _TOTAL_ data",
-                paginate: {
-                    previous: "←",
-                    next: "→"
-                }
+    $('#tabel').DataTable({
+        responsive: true,
+        autoWidth: false,
+        scrollX: true,
+        pagingType: "simple_numbers",
+        language: {
+            search: "🔍 Cari:",
+            lengthMenu: "Tampilkan _MENU_ data",
+            info: "Menampilkan _START_ - _END_ dari _TOTAL_ data",
+            paginate: {
+                previous: "←",
+                next: "→"
             }
-        });
-
-        // isi modal edit
-        $(document).on('click', '.btn-edit', function() {
-            $('#edit_id').val($(this).data('id'));
-            $('#edit_nisn').val($(this).data('nisn'));
-            $('#edit_nama').val($(this).data('nama'));
-            $('#edit_kelas').val($(this).data('kelas'));
-            $('#edit_absen').val($(this).data('absen'));
-        });
-
+        }
     });
-    </script>
+
+    // MODAL EDIT
+    $(document).on('click', '.btn-edit', function() {
+        $('#edit_id').val($(this).data('id'));
+        $('#edit_nisn').val($(this).data('nisn'));
+        $('#edit_nama').val($(this).data('nama'));
+        $('#edit_kelas').val($(this).data('kelas'));
+        $('#edit_absen').val($(this).data('absen'));
+    });
+
+});
+</script>
 
 </body>
 
