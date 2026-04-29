@@ -1,0 +1,47 @@
+RewriteEngine On
+
+# ===============================
+# FORCE HTTPS (jika hosting pakai SSL)
+# ===============================
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ===============================
+# DEFAULT INDEX
+# ===============================
+DirectoryIndex index.php
+
+# ===============================
+# HIDE EXTENSION .php (OPSIONAL)
+# contoh: /dashboard jadi /dashboard.php
+# ===============================
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# ===============================
+# PROTECT FILE SENSITIF
+# ===============================
+<FilesMatch "(composer\.json|composer\.lock|\.env)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ===============================
+# BLOCK AKSES FOLDER SYSTEM
+# ===============================
+RedirectMatch 403 /(config|auth|vendor)/
+
+# ===============================
+# DISABLE DIRECTORY LISTING
+# ===============================
+Options -Indexes
+
+# ===============================
+# SECURITY HEADER (opsional)
+# ===============================
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
