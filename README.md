@@ -1,6 +1,6 @@
 ## Building Project a Labels at School
 
-<h2>Labels</h2>
+<h2>Labels Apps</h2>
 
 <div style="text-align: center">
     <img src="assets/screen/labels.png" />
