@@ -320,6 +320,16 @@ $kelasList = $conn->query("SELECT DISTINCT kelas FROM siswa ORDER BY kelas ASC")
             padding: 9px;
         }
     }
+
+    /* OPTIONAL AGAR TOMBOL LEBIH MENARIK */
+    .btn-success {
+        background: #16a34a;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background: #15803d;
+    }
     </style>
 
 </head>
@@ -381,6 +391,11 @@ $kelasList = $conn->query("SELECT DISTINCT kelas FROM siswa ORDER BY kelas ASC")
 
                 <a href="modules/siswa/pdf.php" target="_blank" class="btn btn-dark btn-sm">
                     <i class="bi bi-file-earmark-pdf"></i> Export
+                </a>
+
+                <!-- TAMBAHKAN DI DASHBOARD TOOLBAR / CARD PRINT -->
+                <a href="modules/siswa/pdf_bungur.php" target="_blank" class="btn btn-success btn-sm">
+                    <i class="bi bi-printer"></i> Print Kelas Bungur
                 </a>
             </div>
 
