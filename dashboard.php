@@ -395,7 +395,11 @@ $kelasList = $conn->query("SELECT DISTINCT kelas FROM siswa ORDER BY kelas ASC")
 
                 <!-- TAMBAHKAN DI DASHBOARD TOOLBAR / CARD PRINT -->
                 <a href="modules/siswa/pdf_bungur.php" target="_blank" class="btn btn-success btn-sm">
-                    <i class="bi bi-printer"></i> Print Kelas Bungur
+                    <i class="bi bi-printer"></i> Print Loker Baru
+                </a>
+
+                <a href="modules/siswa/pdf_lokerlama.php" target="_blank" class="btn btn-info btn-sm">
+                    <i class="bi bi-printer"></i> Print Loker Lama
                 </a>
             </div>
 
